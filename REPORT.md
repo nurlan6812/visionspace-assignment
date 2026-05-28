@@ -5,7 +5,7 @@
 - 선택 트랙: `Track 1 Text/Image to 3D`
 - 필수 트랙: `Track 3 Text-to-Scene Mini`
 
-이번 구현은 Track 1과 Track 3를 따로 만든 것이 아니라, `Text-to-Simulation` 파이프라인 안에서 서로 연결되는 두 모듈로 설계했다.
+이번 구현은 Track 1과 Track 3를 따로 만든 것이 아니라, `Text-to-Simulation` 파이프라인 안에서 서로 연결되는 두 모듈로 설계했습니다.
 
 ```text
 사용자 자연어
@@ -15,7 +15,7 @@
   -> postprocess / preview / simulator handoff
 ```
 
-이번 구현에서 가장 신경 쓴 부분은 재현성, tool contract, 그리고 도메인 한계의 명시였다.
+이번 구현에서 가장 신경 쓴 부분은 재현성, tool contract, 그리고 도메인 한계의 명시였습니다.
 
 ## 2. 환경과 제약
 
@@ -24,14 +24,14 @@
 - CUDA: `13.0`
 - Python: `3.12`
 - Frontend: `Next.js 16`
-- LLM 서빙: 로컬 vLLM (`Qwen/Qwen3.6-35B-A3B-FP8`, served-model-name=`local-main`, `http://localhost:8003/v1`). OpenAI(`gpt-4o-mini`) 경로도 호환.
+- LLM 서빙: 로컬 vLLM (`Qwen/Qwen3.6-35B-A3B-FP8`, served-model-name=`local-main`, `http://localhost:8003/v1`). OpenAI(`gpt-4o-mini`) 경로도 호환합니다.
 
-실무적으로 가장 큰 제약은 두 가지였다.
+실무적으로 가장 큰 제약은 두 가지였습니다.
 
 1. 현재 선택 모델인 `TripoSR`, `Hunyuan3D-2mini`가 모두 `image-to-3D` 계열이라는 점
 2. `GB10/aarch64` 환경이 일반적인 `x86_64 CUDA` 환경과 달라 모델별 격리 환경 구성이 필요했다는 점
 
-그래서 모델 runner는 메인 앱 환경과 분리했고, prompt-only text-to-3D를 무리하게 붙이기보다 `reference image 기반 asset generation`을 명시하는 쪽을 선택했다.
+그래서 모델 runner는 메인 앱 환경과 분리했고, prompt-only text-to-3D를 무리하게 붙이기보다 `reference image 기반 asset generation`을 명시하는 쪽을 선택했습니다.
 
 ## 3. Track 1 설계
 
@@ -44,7 +44,7 @@
 
 ### 3.2 후처리
 
-구현한 후처리 파이프라인:
+구현한 후처리 파이프라인은 다음과 같습니다.
 
 - mesh/scene을 GLB로 통일
 - uniform scale normalization
@@ -56,16 +56,16 @@
   - watertight
   - bounding box
 
-최종 제출 직전 `Scene transform을 metrics가 무시하던 버그`를 수정했다. 이 수정으로 normalize 이후 bbox와 floor alignment가 실제 출력 파일에 반영되는지 회귀 테스트까지 추가했다.
+최종 제출 직전 `Scene transform을 metrics가 무시하던 버그`를 수정했습니다. 이 수정으로 normalize 이후 bbox와 floor alignment가 실제 출력 파일에 반영되는지 회귀 테스트까지 추가했습니다.
 
 ### 3.3 실험 입력
 
-실험에 사용한 reference image는 두 종류다.
+실험에 사용한 reference image는 두 종류입니다.
 
 - 기존 샘플: `outputs/uploads/triposr-robot.png`
 - 과제용으로 추가 생성한 정면 reference image: `scripts/generate_reference_images.py`
 
-추가 생성한 산업 자산 reference image:
+추가 생성한 산업 자산 reference image는 다음과 같습니다.
 
 - `reference-agv.png`
 - `reference-robot-arm.png`
@@ -73,7 +73,7 @@
 - `reference-rack.png`
 - `reference-safety-fence.png`
 
-실험 평가는 ground-truth mesh가 없기 때문에 다음 proxy metric 중심으로 잡았다.
+실험 평가는 ground-truth mesh가 없기 때문에 다음 proxy metric 중심으로 잡았습니다.
 
 - end-to-end latency
 - faces / vertices / file size
@@ -85,7 +85,7 @@
 
 ### 4.1 공통 비교 케이스
 
-아래 표는 두 모델을 같은 카테고리에서 비교한 결과다. bbox는 `raw mesh` 기준이다. uniform normalization은 절대 크기만 조정하므로, 실패 분석의 핵심인 `형상 비율 왜곡`은 raw bbox로 보는 것이 더 적절했다.
+아래 표는 두 모델을 같은 카테고리에서 비교한 결과입니다. bbox는 `raw mesh` 기준입니다. uniform normalization은 절대 크기만 조정하므로, 실패 분석의 핵심인 `형상 비율 왜곡`은 raw bbox로 보는 것이 더 적절했습니다.
 
 | asset | 모델 | latency(s) | faces | vertices | file size | bbox(m) | watertight | 관찰 포인트 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -98,7 +98,7 @@
 
 ### 4.2 TripoSR 추가 케이스
 
-`TripoSR`은 빠른 baseline으로 반복 구조와 길쭉한 산업 자산에서 어떤 실패가 나는지 보기 위해 추가 케이스를 더 돌렸다.
+`TripoSR`은 빠른 baseline으로 두고 반복 구조와 길쭉한 산업 자산에서 어떤 실패가 나는지 보기 위해 추가 케이스를 더 돌렸습니다.
 
 | asset | latency(s) | faces | file size | bbox(m) | 관찰 포인트 |
 | --- | --- | --- | --- | --- | --- |
@@ -107,7 +107,7 @@
 
 ## 5. Track 1 실패 분석
 
-피드백에서 강조된 부분이 "성공 샘플보다 실패 원인 분석"이었기 때문에, 실패를 `하드 실패`와 `구조 실패`로 나눠 정리했다.
+피드백에서 강조된 부분이 "성공 샘플보다 실패 원인 분석"이었기 때문에, 실패를 `하드 실패`와 `구조 실패`로 나눠 정리했습니다.
 
 ### 5.1 하드 실패: prompt-only 요청
 
@@ -116,7 +116,7 @@
 | `robot-arm-cobot-02` + TripoSR | 실패 | reference image 없음 | 모델의 입력 contract와 과제 요구를 혼동하면 안 된다는 점을 드러냄 |
 | `conveyor-straight-01` + Hunyuan3D-2mini | 실패 | reference image 없음 | "Text/Image to 3D"라고 해도 선택 모델은 실제로 image-to-3D였음 |
 
-이 실패는 모델 입력 contract와 직접 닿는 부분이라, UI와 runner에서 reference image 필요를 명시적으로 드러내는 쪽으로 설계했다.
+이 실패는 모델 입력 contract와 직접 닿는 부분이라, UI와 runner에서 reference image 필요를 명시적으로 드러내는 쪽으로 설계했습니다.
 
 ### 5.2 구조 실패: 산업 자산 형태 보존 한계
 
@@ -130,23 +130,23 @@
 
 ### 5.3 해석
 
-이번 실험에서는 비교적 일관된 패턴이 나타났다.
+이번 실험에서는 비교적 일관된 패턴이 나타났습니다.
 
-- `TripoSR`은 빠르고 가볍지만 `얇은 구조`, `반복 구조`, `관절 구조`에서 약하다.
-- `Hunyuan3D-2mini`는 더 풍부한 형상을 주지만 `latency`와 `mesh density`가 커서 바로 simulator에 넣기엔 부담이 크다.
-- 그래서 Track 1의 운영 전략은 TripoSR를 빠른 baseline, Hunyuan3D-2mini를 quality candidate로 두고, 후처리/decimation/quality gate를 다음 단계로 잡았다.
+- `TripoSR`은 빠르고 가볍지만 `얇은 구조`, `반복 구조`, `관절 구조`에서 약합니다.
+- `Hunyuan3D-2mini`는 더 풍부한 형상을 주지만 `latency`와 `mesh density`가 커서 바로 simulator에 넣기엔 부담이 큽니다.
+- 그래서 Track 1의 운영 전략은 TripoSR를 빠른 baseline, Hunyuan3D-2mini를 quality candidate로 두고, 후처리/decimation/quality gate를 다음 단계로 잡았습니다.
 
 ## 6. Track 3 결과
 
-Track 3는 regex parser 한 겹이 아니라, downstream tool이 가져다 쓸 수 있는 scene interpretation tool 형태로 설계했다.
+Track 3는 regex parser 한 겹이 아니라, downstream tool이 가져다 쓸 수 있는 scene interpretation tool 형태로 설계했습니다.
 
-핵심 contract:
+핵심 contract는 다음과 같습니다.
 
 ```text
 parse_scene_to_scene_spec(user_instruction: str) -> SceneSpec
 ```
 
-구현 포인트:
+구현 포인트는 다음과 같습니다.
 
 - `SceneSpec`, `SpaceSpec`, `EntitySpec`, `PlacementSpec`으로 schema-first 구조 설계
 - `tool-schema` API 제공으로 function-calling contract 노출
@@ -165,40 +165,40 @@ parse_scene_to_scene_spec(user_instruction: str) -> SceneSpec
 
 ### 6.2 구현상 의미 있었던 디테일
 
-- `700평`을 `2314.05 m2`로 변환하면서 `area_source="700평"`를 남겨 환산 근거 추적 가능
-- `"6대 중 2대는 회피 우선"`을 `quantity=6`, `priority_quantity=2`, `mode=avoidance_priority`로 분리
-- LLM 경로(vLLM Qwen3.6 guided JSON, OpenAI structured output 호환)가 실패하더라도 deterministic parser로 fallback 가능
+- `700평`을 `2314.05 m2`로 변환하면서 `area_source="700평"`를 남겨 환산 근거를 추적할 수 있도록 했습니다.
+- `"6대 중 2대는 회피 우선"`을 `quantity=6`, `priority_quantity=2`, `mode=avoidance_priority`로 분리했습니다.
+- LLM 경로(vLLM Qwen3.6 guided JSON, OpenAI structured output 호환)가 실패하더라도 deterministic parser로 fallback이 가능합니다.
 
 ### 6.3 검증 상태
 
 - `pytest -q` -> `17 passed`
-- `Track 3` 자체 케이스 5개 모두 validation
-- `llm_structured_output` 경로(OpenAI structured output + vLLM Qwen3.6 guided JSON)와 `hybrid_fallback` 경로 모두 테스트로 커버
+- `Track 3` 자체 케이스 5개 모두 validation 통과
+- `llm_structured_output` 경로(OpenAI structured output + vLLM Qwen3.6 guided JSON)와 `hybrid_fallback` 경로 모두 테스트로 커버됩니다.
 
 ## 7. 주요 trade-off
 
-1. 시연 중심 구성보다 `contract-first pipeline`을 선택했다.
-   Track 3를 그 자체로 끝내지 않고, Track 1과 연결되는 downstream handoff 구조로 잡았다.
+1. 시연 중심 구성보다 `contract-first pipeline`을 선택했습니다.
+   Track 3를 그 자체로 끝내지 않고, Track 1과 연결되는 downstream handoff 구조로 잡았습니다.
 
-2. `pure LLM parser` 대신 `hybrid parser`를 선택했다.
-   structured output은 표현력이 좋지만, 과제 데모 안정성을 위해 deterministic fallback을 남겨두는 것이 더 실무적이라고 판단했다.
+2. `pure LLM parser` 대신 `hybrid parser`를 선택했습니다.
+   structured output은 표현력이 좋지만, 과제 데모 안정성을 위해 deterministic fallback을 남겨두는 것이 더 실무적이라고 판단했습니다.
 
-3. `full simulator-specific postprocess` 대신 `uniform normalize + floor align`을 먼저 구현했다.
-   Blender CLI가 없는 환경에서 재현성을 우선한 선택이었다.
+3. `full simulator-specific postprocess` 대신 `uniform normalize + floor align`을 먼저 구현했습니다.
+   Blender CLI가 없는 환경에서 재현성을 우선한 선택이었습니다.
 
-4. text-to-3D 모델을 쓴 것처럼 보이게 하지 않았다.
-   선택 모델이 image-to-3D 계열이라 reference image가 필요하다는 점을 문서와 UI에 그대로 적었다.
+4. text-to-3D 모델을 쓴 것처럼 보이게 하지 않았습니다.
+   선택 모델이 image-to-3D 계열이라 reference image가 필요하다는 점을 문서와 UI에 그대로 적었습니다.
 
 ## 8. 한계와 다음 단계
 
-현재 한계:
+현재 한계는 다음과 같습니다.
 
-- Track 1은 reference image 의존성이 있다.
-- Hunyuan 결과는 simulator asset로 쓰기 전에 decimation 단계가 필요하다.
-- normalize는 uniform scaling 기준이라 per-axis target fitting까지는 하지 않는다.
-- Track 3의 downstream task는 planning skeleton까지이며 실제 layout generator/exporter는 미구현이다.
+- Track 1은 reference image 의존성이 있습니다.
+- Hunyuan 결과는 simulator asset로 쓰기 전에 decimation 단계가 필요합니다.
+- normalize는 uniform scaling 기준이라 per-axis target fitting까지는 다루지 않습니다.
+- Track 3의 downstream task는 planning skeleton까지이며 실제 layout generator/exporter는 미구현 상태입니다.
 
-다음 단계:
+다음 단계는 다음과 같습니다.
 
 1. Hunyuan 출력에 decimation / quality gate 추가
 2. Track 3 -> asset queue -> layout generator 연결
@@ -207,15 +207,15 @@ parse_scene_to_scene_spec(user_instruction: str) -> SceneSpec
 
 ## 9. 결론
 
-이번 제출에서 가장 많이 고민한 부분은 두 트랙을 하나의 contract로 연결하는 방법이었다.
+이번 제출에서 가장 많이 고민한 부분은 두 트랙을 하나의 contract로 연결하는 방법이었습니다.
 
 - Track 3: 자연어를 simulator-agnostic SceneSpec으로 바꾸는 해석 계층
 - Track 1: 부족한 자산을 GLB로 보충하는 downstream generation tool
 
-실험 결과도 같은 방향으로 정리됐다.
+실험 결과도 같은 방향으로 정리되었습니다.
 
 - TripoSR: 빠른 baseline
 - Hunyuan3D-2mini: 더 무거운 quality candidate
 - 실패 분석: 얇은 구조, 반복 구조, articulated structure가 어디서 무너지는지 확인
 
-마무리 단계에서는 모델 실행 결과보다 TESSERACT에 연결 가능한 형태로 코드와 문서를 정리하는 데 더 시간을 썼다.
+마무리 단계에서는 모델 실행 결과보다 TESSERACT에 연결 가능한 형태로 코드와 문서를 정리하는 데 더 시간을 썼습니다.

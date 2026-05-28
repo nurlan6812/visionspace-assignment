@@ -26,3 +26,6 @@ models/cache/
 # 회사에서 받은 원본 자료 (평가자가 이미 보유)
 VISIONSPACE_Introduction.pdf
 visionspace_assignment.pptx
+
+# 사전 계획 문서 (로컬 참고용, 제출 대상 아님)
+ASSIGNMENT_PLAN.md

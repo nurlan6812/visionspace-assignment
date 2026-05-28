@@ -245,7 +245,6 @@ UI는 과제 문서의 디자인 가이드를 따릅니다.
 
 - `REPORT.md`: 모델 비교, 후처리, 실패 분석
 - `RETROSPECTIVE.md`: 의사결정 근거와 회고
-- `ASSIGNMENT_PLAN.md`: 계획 및 조사 내용
 - `ARCHITECTURE.md`: Text-to-Simulation 전체 구조
 
 ## GLB 샘플
