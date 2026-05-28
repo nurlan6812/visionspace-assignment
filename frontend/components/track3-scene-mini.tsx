@@ -183,15 +183,15 @@ export function Track3SceneMini() {
         <Badge tone={sceneSpec ? "ok" : "neutral"}>Provider · {sceneSpec?.tool_call.provider ?? "-"}</Badge>
       </div>
 
-      <div className="grid gap-8 xl:grid-cols-[360px_minmax(0,1fr)_460px]">
-        <Card stripe="navy" className="flex flex-col">
+      <div className="grid gap-8 xl:grid-cols-[360px_minmax(0,1fr)_460px] xl:items-start">
+        <Card stripe="navy" className="xl:sticky xl:top-6">
           <CardHeader>
             <CardTitle>입력</CardTitle>
             <p className="mt-2 text-xs leading-5 text-slate-500">
               예시 문장을 고르거나 직접 입력한 뒤 파싱을 실행합니다.
             </p>
           </CardHeader>
-          <CardContent className="flex flex-1 flex-col space-y-4">
+          <CardContent className="space-y-4">
             <label className="block">
               <span className="text-xs font-bold uppercase tracking-[0.16em] text-vision-muted">예시 케이스</span>
               <select
@@ -223,7 +223,8 @@ export function Track3SceneMini() {
             <textarea
               value={sceneText}
               onChange={(event) => setSceneText(event.target.value)}
-              className="min-h-[200px] w-full flex-1 resize-none border border-vision-line bg-white px-3 py-3 text-sm leading-6"
+              rows={10}
+              className="w-full resize-none border border-vision-line bg-white px-3 py-3 text-sm leading-6"
             />
 
             <div className="flex flex-wrap gap-2">
@@ -237,15 +238,15 @@ export function Track3SceneMini() {
           </CardContent>
         </Card>
 
-        <Card stripe="none" className="flex flex-col overflow-hidden">
+        <Card stripe="none" className="overflow-hidden xl:sticky xl:top-6">
           <CardHeader>
             <CardTitle>Raw JSON</CardTitle>
             <p className="mt-2 text-xs leading-5 text-slate-500">
               parser가 반환한 SceneSpec 전체 구조입니다. 길어져도 이 영역 안에서만 스크롤됩니다.
             </p>
           </CardHeader>
-          <CardContent className="flex flex-1 flex-col p-0">
-            <pre className="min-h-[480px] flex-1 overflow-y-auto overflow-x-hidden whitespace-pre-wrap break-all bg-[#101318] p-5 font-mono text-xs leading-5 text-slate-100">
+          <CardContent className="p-0">
+            <pre className="h-[720px] overflow-y-auto overflow-x-hidden whitespace-pre-wrap break-all bg-[#101318] p-5 font-mono text-xs leading-5 text-slate-100">
               {sceneSpec ? JSON.stringify(sceneSpec, null, 2) : "SceneSpec JSON이 여기에 표시됩니다."}
             </pre>
           </CardContent>

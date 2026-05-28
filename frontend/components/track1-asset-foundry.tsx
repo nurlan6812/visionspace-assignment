@@ -273,7 +273,7 @@ export function Track1AssetFoundry() {
               <textarea
                 value={promptText}
                 onChange={(event) => setPromptText(event.target.value)}
-                rows={4}
+                rows={7}
                 className="mt-2 w-full resize-none border border-vision-line bg-white px-3 py-3 text-sm leading-6"
               />
             </label>
@@ -337,31 +337,37 @@ export function Track1AssetFoundry() {
               <p className="mt-2 text-xs text-slate-500">
                 현재 baseline 모델은 image-to-3D입니다. 텍스트는 asset 설명/평가 metadata로 보존합니다.
               </p>
-              <div className="mt-4 border-t border-vision-line pt-3">
+              <div className="mt-4 border-t border-vision-line pt-4">
                 <div className="text-[11px] font-bold uppercase tracking-[0.16em] text-vision-muted">빠른 테스트용 샘플</div>
-                <div className="mt-2 grid grid-cols-2 gap-1.5">
+                <div className="mt-3 flex flex-wrap gap-2">
                   {SAMPLE_REFERENCE_IMAGES.map((sample) => (
                     <Button
                       key={sample.id}
                       type="button"
                       variant="secondary"
-                      className="text-xs"
                       onClick={() => void useSampleImage(sample.path, sample.filename, sample.label)}
                     >
                       {sample.label}
                     </Button>
                   ))}
                 </div>
+                <p className="mt-2 text-xs text-slate-500">
+                  직접 준비한 이미지가 없으면 샘플을 누르거나, 위 프리셋을 선택해 자동으로 연결된 reference image로 바로 테스트할 수 있습니다.
+                </p>
               </div>
 
               {referencePreviewSrc && (
-                <div className="mt-3 border border-vision-line bg-white p-2">
+                <div className="mt-4 border border-vision-line bg-white p-3">
+                  <div className="text-[11px] font-bold uppercase tracking-[0.16em] text-vision-muted">선택된 참조 이미지</div>
                   <img
                     src={referencePreviewSrc}
                     alt={referencePreviewLabel || "Reference preview"}
-                    className="h-28 w-full border border-vision-line bg-white object-contain"
+                    className="mt-3 h-44 w-full border border-vision-line bg-white object-contain"
                   />
-                  <p className="mt-1.5 text-[11px] font-mono text-vision-navy">{referencePreviewLabel}</p>
+                  <p className="mt-2 text-xs font-mono text-vision-navy">{referencePreviewLabel}</p>
+                  <p className="mt-1 text-xs text-slate-500">
+                    이 2D reference image를 기반으로 오른쪽 3D GLB가 생성됩니다.
+                  </p>
                 </div>
               )}
             </label>
@@ -372,7 +378,7 @@ export function Track1AssetFoundry() {
           </CardContent>
         </Card>
 
-        <Card stripe="none" className="overflow-hidden bg-[#101318] xl:sticky xl:top-6 xl:self-start">
+        <Card stripe="none" className="overflow-hidden bg-[#101318]">
           <div className="flex items-center justify-between border-b border-white/10 px-6 py-4 text-white">
             <div>
               <div className="font-mono text-xs uppercase tracking-[0.18em] text-vision-amber">GLB Preview</div>
@@ -383,7 +389,7 @@ export function Track1AssetFoundry() {
           <ModelPreview src={previewSrc} />
         </Card>
 
-        <div className="space-y-5 xl:sticky xl:top-6 xl:self-start">
+        <div className="space-y-5">
           <Card stripe="amber">
             <CardHeader>
               <CardTitle>Asset Metrics</CardTitle>
