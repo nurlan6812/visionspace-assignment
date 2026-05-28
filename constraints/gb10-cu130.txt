@@ -1,0 +1,4 @@
+# GB10 / aarch64 / CUDA 13 baseline used by scripts/setup_model_envs.py.
+# Keep torch and torchvision paired. Hunyuan3D requires torchvision.
+torch==2.12.0
+torchvision==0.27.0

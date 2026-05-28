@@ -1,0 +1,22 @@
+[
+  {
+    "id": "case-agv-grid",
+    "input": "AGV 6대를 700평 직사각형 공장에 격자 배치하고, 출입구 근처 2대는 회피 우선 모드로 설정해줘"
+  },
+  {
+    "id": "case-conveyor-rack",
+    "input": "1200제곱미터 창고에 컨베이어 3개를 중앙 라인으로 배치하고 양쪽에 랙 12개를 놓아줘"
+  },
+  {
+    "id": "case-robot-arm",
+    "input": "로봇팔 4대를 조립 셀 주변에 배치하고 작업자 2명은 안전 구역 밖에 위치시켜줘"
+  },
+  {
+    "id": "case-mixed",
+    "input": "AMR 8 units, conveyor 2 units, and 1 charging station in a rectangular 900 m2 warehouse. Prioritize collision avoidance near the entrance."
+  },
+  {
+    "id": "case-ambiguous",
+    "input": "작은 물류센터에 AGV 여러 대와 랙을 적당히 배치해줘. 속도는 낮게 설정해줘"
+  }
+]

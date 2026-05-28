@@ -1,0 +1,74 @@
+{
+  "id": "015850bdcb17",
+  "status": "completed",
+  "request": {
+    "prompt_id": "amr-low-profile-01",
+    "prompt": "A low-profile autonomous mobile robot for warehouse logistics, rectangular body, four visible wheels, flat payload deck, industrial blue-gray material, front lidar sensor, clean orthographic product view, white background",
+    "asset_type": "agv",
+    "model": "triposr",
+    "image_path": "/home/jaekwang/visionspace/outputs/uploads/triposr-sample-industrial-robot.png",
+    "target_dimensions_m": {
+      "x": 1.0,
+      "y": 0.7,
+      "z": 0.35
+    },
+    "bake_texture": false,
+    "texture_resolution": 1024
+  },
+  "asset": {
+    "id": "015850bdcb17",
+    "prompt_id": "amr-low-profile-01",
+    "title": "amr-low-profile-01",
+    "asset_type": "agv",
+    "model": "triposr",
+    "prompt": "A low-profile autonomous mobile robot for warehouse logistics, rectangular body, four visible wheels, flat payload deck, industrial blue-gray material, front lidar sensor, clean orthographic product view, white background",
+    "source_image": "outputs/uploads/triposr-sample-industrial-robot.png",
+    "raw_path": "outputs/model-runs/015850bdcb17/raw/triposr-output.glb",
+    "glb_path": "outputs/assets/015850bdcb17-triposr.glb",
+    "normalized_path": "outputs/assets/015850bdcb17-triposr-normalized.glb",
+    "download_url": "/generated/assets/015850bdcb17-triposr-normalized.glb",
+    "metrics": {
+      "file_size_bytes": 3123276,
+      "vertices": 78133,
+      "faces": 156010,
+      "mesh_count": 1,
+      "bounding_box_m": {
+        "x": 0.7126374840736389,
+        "y": 0.9696570336818695,
+        "z": 0.9870312213897705
+      },
+      "largest_dimension_m": 0.9870312213897705,
+      "is_watertight": false,
+      "has_materials": false,
+      "has_textures": false,
+      "warnings": []
+    },
+    "normalized_metrics": {
+      "file_size_bytes": 3123484,
+      "vertices": 78133,
+      "faces": 156010,
+      "mesh_count": 1,
+      "bounding_box_m": {
+        "x": 0.7126374840736389,
+        "y": 0.9696570336818695,
+        "z": 0.9870312213897705
+      },
+      "largest_dimension_m": 0.9870312213897705,
+      "is_watertight": false,
+      "has_materials": false,
+      "has_textures": false,
+      "warnings": []
+    },
+    "created_at": "2026-05-24T13:18:00.541863",
+    "notes": [
+      "Generation elapsed seconds: 7.73"
+    ]
+  },
+  "error": null,
+  "logs": [
+    "Generation started.",
+    "Generation and normalization completed."
+  ],
+  "created_at": "2026-05-24T13:17:50.302795",
+  "updated_at": "2026-05-24T13:18:00.541903"
+}

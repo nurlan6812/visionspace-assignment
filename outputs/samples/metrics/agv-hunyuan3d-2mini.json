@@ -1,0 +1,74 @@
+{
+  "id": "bb2ae65c02a5",
+  "status": "completed",
+  "request": {
+    "prompt_id": "amr-low-profile-01",
+    "prompt": "A low-profile autonomous mobile robot for warehouse logistics, rectangular body, four visible wheels, flat payload deck, industrial blue-gray material, front lidar sensor, clean orthographic product view, white background",
+    "asset_type": "agv",
+    "model": "hunyuan3d_2mini",
+    "image_path": "/home/jaekwang/visionspace/outputs/uploads/hunyuan3d_2mini-sample-industrial-robot.png",
+    "target_dimensions_m": {
+      "x": 1.0,
+      "y": 0.7,
+      "z": 0.35
+    },
+    "bake_texture": false,
+    "texture_resolution": 1024
+  },
+  "asset": {
+    "id": "bb2ae65c02a5",
+    "prompt_id": "amr-low-profile-01",
+    "title": "amr-low-profile-01",
+    "asset_type": "agv",
+    "model": "hunyuan3d_2mini",
+    "prompt": "A low-profile autonomous mobile robot for warehouse logistics, rectangular body, four visible wheels, flat payload deck, industrial blue-gray material, front lidar sensor, clean orthographic product view, white background",
+    "source_image": "outputs/uploads/hunyuan3d_2mini-sample-industrial-robot.png",
+    "raw_path": "outputs/model-runs/bb2ae65c02a5/raw/hunyuan-output.glb",
+    "glb_path": "outputs/assets/bb2ae65c02a5-hunyuan3d_2mini.glb",
+    "normalized_path": "outputs/assets/bb2ae65c02a5-hunyuan3d_2mini-normalized.glb",
+    "download_url": "/generated/assets/bb2ae65c02a5-hunyuan3d_2mini-normalized.glb",
+    "metrics": {
+      "file_size_bytes": 20345020,
+      "vertices": 565094,
+      "faces": 1130256,
+      "mesh_count": 1,
+      "bounding_box_m": {
+        "x": 1.9011443257331848,
+        "y": 1.9943596720695496,
+        "z": 1.5946033000946045
+      },
+      "largest_dimension_m": 1.9943596720695496,
+      "is_watertight": false,
+      "has_materials": false,
+      "has_textures": false,
+      "warnings": []
+    },
+    "normalized_metrics": {
+      "file_size_bytes": 20345232,
+      "vertices": 565094,
+      "faces": 1130256,
+      "mesh_count": 1,
+      "bounding_box_m": {
+        "x": 1.9011443257331848,
+        "y": 1.9943596720695496,
+        "z": 1.5946033000946045
+      },
+      "largest_dimension_m": 1.9943596720695496,
+      "is_watertight": false,
+      "has_materials": false,
+      "has_textures": false,
+      "warnings": []
+    },
+    "created_at": "2026-05-24T13:20:52.221217",
+    "notes": [
+      "Generation elapsed seconds: 53.46"
+    ]
+  },
+  "error": null,
+  "logs": [
+    "Generation started.",
+    "Generation and normalization completed."
+  ],
+  "created_at": "2026-05-24T13:19:20.374386",
+  "updated_at": "2026-05-24T13:20:52.221248"
+}

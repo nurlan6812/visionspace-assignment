@@ -1,0 +1,22 @@
+models:
+  triposr:
+    label: TripoSR
+    modality: image-to-3d
+    repo_env: TRIPOSR_REPO
+    python_env: TRIPOSR_PYTHON
+    expected_repo: models/repos/TripoSR
+    command_note: "python run.py input.png --output-dir outputs/model-runs/<job>"
+    baseline: true
+  hunyuan3d_2mini:
+    label: Hunyuan3D-2mini
+    modality: image-to-3d
+    repo_env: HUNYUAN3D_REPO
+    python_env: HUNYUAN3D_PYTHON
+    expected_repo: models/repos/Hunyuan3D-2
+    model_path_env: HUNYUAN3D_MODEL_PATH
+    subfolder_env: HUNYUAN3D_SUBFOLDER
+    baseline: true
+postprocess:
+  default_target_largest_dimension_m: 2.0
+  floor_axis: z
+  align_floor_to_zero: true
